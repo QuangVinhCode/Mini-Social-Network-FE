@@ -1,0 +1,46 @@
+.register-container {
+  max-width: 400px;
+  margin: 50px auto; // Căn giữa trên màn hình lớn
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Đảm bảo nội dung căn giữa theo chiều ngang
+
+  h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .ant-form {
+    width: 100%; // Đảm bảo form chiếm toàn bộ container
+
+    .ant-form-item {
+      width: 100%; // Fix chiều rộng input
+    }
+
+    .ant-btn-primary {
+      width: 100%; // Nút đăng ký full width
+    }
+  }
+
+  // 📌 **Responsive Design**: Căn chỉnh lại vị trí cho thiết bị nhỏ hơn
+  @media (max-width: 768px) {
+    max-width: 90%;
+    margin: 30px auto;
+    padding: 15px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 95%;
+    margin: 20px auto;
+    padding: 10px;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+}
