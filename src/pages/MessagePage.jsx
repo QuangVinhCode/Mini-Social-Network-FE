@@ -24,8 +24,14 @@ class MessagePage extends Component {
     newMessage: "",
     received: null,
     openBtn: false,
+    isMobileChatOpen: false,
   };
   messageService = new MessageService();
+
+  toggleMobileChat = () => {
+    console.log(!this.state.isMobileChatOpen);
+    this.setState({ isMobileChatOpen: !this.state.isMobileChatOpen });
+  };
 
   handleChatSelect = async (received) => {
     const userSession = sessionStorage.getItem("userSession")
@@ -46,6 +52,7 @@ class MessagePage extends Component {
         })
       );
       this.setState({ messages: updatedMessages, received });
+      this.toggleMobileChat();
     }
   };
 
@@ -145,37 +152,52 @@ class MessagePage extends Component {
     const userSession = sessionStorage.getItem("userSession")
       ? JSON.parse(sessionStorage.getItem("userSession"))
       : null;
-    const { chatList, selectedChat, messages, newMessage, openBtn, received } =
-      this.state;
+    const {
+      chatList,
+      selectedChat,
+      messages,
+      newMessage,
+      openBtn,
+      received,
+      isMobileChatOpen,
+    } = this.state;
     return (
       <div className="chat__app">
-        <div className="chat__sidebar">
-          <div className="search__bar">
-            <Input
-              type="text"
-              placeholder="Tìm kiếm trên Messenger"
-              suffix={<IoMdSearch />}
-            />
-          </div>
-          <div className="chat__list">
-            {chatList.map((chat) => (
-              <div
-                key={chat.lastMessage._id}
-                className={`chat__item ${
-                  selectedChat === chat.lastMessage._id ? "active" : ""
-                }`}
-                onClick={() => this.handleChatSelect(chat.withUser._id)}
-              >
-                <div className="avatar">
-                  <Avatar size={50} src={chat.withUser.avatar} alt="Avatar" />
+        <div className={`chat__sidebar ${isMobileChatOpen ? "open" : ""}`}>
+          <button
+            className="close__btn"
+            onClick={() => this.toggleMobileChat()}
+          >
+            X
+          </button>
+          <div>
+            <div className="search__bar">
+              <Input
+                type="text"
+                placeholder="Tìm kiếm trên Messenger"
+                suffix={<IoMdSearch />}
+              />
+            </div>
+            <div className="chat__list">
+              {chatList.map((chat) => (
+                <div
+                  key={chat.lastMessage._id}
+                  className={`chat__item ${
+                    selectedChat === chat.lastMessage._id ? "active" : ""
+                  }`}
+                  onClick={() => this.handleChatSelect(chat.withUser._id)}
+                >
+                  <div className="avatar">
+                    <Avatar size={50} src={chat.withUser.avatar} alt="Avatar" />
+                  </div>
+                  <div className="chat__info">
+                    <h5>{chat.withUser.name}</h5>
+                    <p>{chat.lastMessage.content}</p>
+                    <span>{chat.lastMessage.sentAt}</span>
+                  </div>
                 </div>
-                <div className="chat__info">
-                  <h5>{chat.withUser.name}</h5>
-                  <p>{chat.lastMessage.content}</p>
-                  <span>{chat.lastMessage.sentAt}</span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 
@@ -198,6 +220,12 @@ class MessagePage extends Component {
                 chatList.find((chat) => chat.withUser._id === received).withUser
                   .name}
             </h3>
+            <button
+              className="btn__open"
+              onClick={() => this.toggleMobileChat()}
+            >
+              ☰
+            </button>
           </div>
           <div className="chat__messages">
             {messages.map((message, index) => (

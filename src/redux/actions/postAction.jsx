@@ -5,7 +5,6 @@ import {
   POST_SET,
   POST_STATE_CLEAR,
   COMMON_ERROR_SET,
-  COMMON_LOADING_SET,
   COMMON_MESSAGE_SET,
   POST_LIKE,
 } from "./actionTypes";
@@ -39,10 +38,9 @@ export const insertPost = (object) => async (dispatch) => {
 
 export const likePost = (object) => async (dispatch) => {
   const service = new PostService();
-
   try {
     console.log("Like bài viết");
-    console.log(object)
+    console.log(object);
     const response = await service.likePost(object);
     if (response.status === 201) {
       dispatch({
@@ -63,7 +61,6 @@ export const likePost = (object) => async (dispatch) => {
 
 export const getPosts = () => async (dispatch) => {
   const service = new PostService();
-
   try {
     console.log("Danh sách bài viết");
     const response = await service.getPosts();
@@ -79,19 +76,11 @@ export const getPosts = () => async (dispatch) => {
         payload: response.message,
       });
     }
-  } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
-  }
+  } catch (error) {}
 };
 
 export const deletePost = (id) => async (dispatch) => {
   const service = new PostService();
-
   try {
     console.log("Xóa bài viết Action");
     const response = await service.deletePost(id);
@@ -113,12 +102,6 @@ export const deletePost = (id) => async (dispatch) => {
     }
   } catch (error) {
     console.log(error);
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
   }
 };
 
@@ -149,17 +132,9 @@ export const getPost = (id) => async (dispatch) => {
 
 export const updatePost = (id, object) => async (dispatch) => {
   const service = new PostService();
-
   try {
     console.log("Sửa bài viết");
-
-    dispatch({
-      type: COMMON_LOADING_SET,
-      payload: true,
-    });
-
     const response = await service.updatePost(id, object);
-
     if (response.status === 201) {
       dispatch({
         type: POST_SET,
@@ -177,17 +152,8 @@ export const updatePost = (id, object) => async (dispatch) => {
     }
     console.log(response);
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
-  dispatch({
-    type: COMMON_LOADING_SET,
-    payload: false,
-  });
 };
 
 export const clearPostState = () => (dispatch) => {

@@ -1,11 +1,8 @@
 import MessageService from "../../services/messageService";
 import {
-  MESSAGES_SET,
   MESSAGE_DELETE,
-  MESSAGE_SET,
   MESSAGE_STATE_CLEAR,
   COMMON_ERROR_SET,
-  COMMON_LOADING_SET,
   COMMON_MESSAGE_SET,
 } from "./actionTypes";
 
@@ -30,12 +27,7 @@ export const sendMessage = (object) => async (dispatch) => {
     }
     console.log(response);
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
 };
 
@@ -73,26 +65,14 @@ export const getLastMessage = (id) => async (dispatch) => {
       });
     }
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    
   }
 };
 
 export const deletedMessage = (id) => async (dispatch) => {
   const service = new MessageService();
-
   try {
     console.log("Xóa Tin nhắn Action");
-
-    dispatch({
-      type: COMMON_LOADING_SET,
-      payload: true,
-    });
-
     const response = await service.deleteMessage(id);
     console.log(response);
     if (response.status === 200) {
@@ -112,17 +92,7 @@ export const deletedMessage = (id) => async (dispatch) => {
     }
   } catch (error) {
     console.log(error);
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
   }
-  dispatch({
-    type: COMMON_LOADING_SET,
-    payload: false,
-  });
 };
 
 export const clearMessageState = () => (dispatch) => {

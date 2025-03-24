@@ -3,8 +3,7 @@ import "../../css/Comment/CommentChild.scss";
 import TextArea from "antd/es/input/TextArea";
 import { Button } from "antd";
 import moment from "moment";
-import PostService from "../../services/postService";
-// Recursive Component
+
 const CommentChild = ({
   comment,
   replyComment,

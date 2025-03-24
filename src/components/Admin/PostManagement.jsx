@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Button, Space, Popconfirm, Modal } from "antd";
+import { Table, Button, Space, Modal } from "antd";
 import "../../css/Admin/PostManagement.scss";
 import withRouter from "../../helpers/withRouter";
 import { connect } from "react-redux";

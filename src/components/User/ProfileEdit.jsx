@@ -1,7 +1,6 @@
 import { Button, Divider, Form, Image, Input, Modal, Upload } from "antd";
 import React, { Component, createRef } from "react";
 import { UploadOutlined } from "@ant-design/icons";
-import PostService from "../../services/postService";
 class ProfileEdit extends Component {
   form = createRef();
 

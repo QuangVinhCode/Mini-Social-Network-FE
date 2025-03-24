@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button } from "antd";
 import "../css/Home/RegisterPage.scss";
 import { connect } from "react-redux";
 import { registerUser } from "../redux/actions/userAction";
-import { Link, Navigate } from "react-router";
+import { Link } from "react-router";
 import withRouter from "../helpers/withRouter";
 
 class RegisterPage extends Component {

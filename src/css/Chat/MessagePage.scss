@@ -1,5 +1,6 @@
 .chat__app {
   display: flex;
+  position: relative;
 }
 
 .chat__sidebar {
@@ -45,7 +46,8 @@
 .chat__messages {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Khoảng cách giữa các tin nhắn */
+  gap: 10px;
+  /* Khoảng cách giữa các tin nhắn */
   padding: 10px;
   overflow-y: auto;
   max-height: 340px;
@@ -53,7 +55,8 @@
 }
 
 .chat__message {
-  max-width: 60%; /* Giới hạn chiều rộng tin nhắn */
+  max-width: 60%;
+  /* Giới hạn chiều rộng tin nhắn */
   padding: 10px 15px;
   border-radius: 15px;
   font-size: 14px;
@@ -99,8 +102,10 @@
   align-items: center;
   gap: 10px;
   padding: 10px;
-  border-top: 1px solid #f0f0f0; /* Đường phân cách ở đầu */
-  background-color: #ffffff; /* Nền trắng */
+  border-top: 1px solid #f0f0f0;
+  /* Đường phân cách ở đầu */
+  background-color: #ffffff;
+  /* Nền trắng */
 }
 
 .chat__input {
@@ -113,8 +118,10 @@
 
 .chat__input:focus {
   outline: none;
-  border-color: #1890ff; /* Màu viền khi tập trung */
-  box-shadow: 0 0 5px rgba(24, 144, 255, 0.5); /* Hiệu ứng sáng viền */
+  border-color: #1890ff;
+  /* Màu viền khi tập trung */
+  box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
+  /* Hiệu ứng sáng viền */
 }
 
 .chat__send-button {
@@ -124,4 +131,76 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
+}
+
+.close__btn {
+  display: none;
+}
+
+.btn__open {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .chat__sidebar {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    z-index: 9999;
+    transform: translateX(100%);
+    display: inline-block;
+    .close__btn {
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: black;
+      display: block;
+      float: right;
+      margin-bottom: 5px;
+    }
+  }
+
+  .chat__sidebar.open {
+    transform: translateX(0);
+  }
+
+  .chat__box {
+    width: 100%;
+    min-width: 100%;
+    height: calc(100vh - 60px);
+    margin-top: 60px;
+
+    .btn__open {
+      display: block;
+    }
+  }
+
+  .chat__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .chat__list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    max-height: 80vh;
+    width: 100%;
+  }
+
+
+  .chat__messages {
+    max-height: calc(100vh - 120px);
+    min-height: calc(100vh - 120px);
+  }
+
+  .chat__input-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
 }

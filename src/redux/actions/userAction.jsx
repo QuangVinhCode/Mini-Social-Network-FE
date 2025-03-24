@@ -13,7 +13,6 @@ export const insertUser = (object, navigate) => async (dispatch) => {
   try {
     console.log("Thêm Người dùng");
     const response = await service.insertUser(object);
-
     if (response.status === 201) {
       dispatch({
         type: USER_SET,
@@ -31,12 +30,7 @@ export const insertUser = (object, navigate) => async (dispatch) => {
     }
     console.log(response);
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
   navigate("/login");
 };
@@ -61,12 +55,7 @@ export const loginUser = (object) => async (dispatch) => {
     }
     console.log(response);
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
 };
 
@@ -90,12 +79,7 @@ export const registerUser = (object, navigate) => async (dispatch) => {
       });
     }
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
 };
 
@@ -118,12 +102,7 @@ export const getUsers = () => async (dispatch) => {
       });
     }
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
 };
 
@@ -142,12 +121,7 @@ export const getUsersByPost = (id) => async (dispatch) => {
       });
     }
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
 };
 
@@ -176,12 +150,7 @@ export const deleteUser = (id) => async (dispatch) => {
     }
   } catch (error) {
     console.log(error);
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
 };
 
@@ -234,12 +203,7 @@ export const updateUser = (id, object) => async (dispatch) => {
       });
     }
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
 };
 

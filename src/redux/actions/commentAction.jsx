@@ -31,12 +31,7 @@ export const insertComment = (object) => async (dispatch) => {
     }
     console.log(response);
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+   console.log(error);
   }
 };
 
@@ -58,12 +53,7 @@ export const replyToComment = (object) => async (dispatch) => {
     }
     console.log(response);
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
 };
 
@@ -86,12 +76,7 @@ export const getComments = () => async (dispatch) => {
       });
     }
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
 };
 
@@ -115,12 +100,7 @@ export const getCommentsByPost = (id) => async (dispatch) => {
       });
     }
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
 };
 
@@ -129,12 +109,6 @@ export const deleteComment = (id) => async (dispatch) => {
 
   try {
     console.log("Xóa bình luận Action");
-
-    dispatch({
-      type: COMMON_LOADING_SET,
-      payload: true,
-    });
-
     const response = await service.deleteComment(id);
     console.log(response);
     if (response.status === 200) {
@@ -154,17 +128,8 @@ export const deleteComment = (id) => async (dispatch) => {
     }
   } catch (error) {
     console.log(error);
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+  
   }
-  dispatch({
-    type: COMMON_LOADING_SET,
-    payload: false,
-  });
 };
 
 export const getComment = (id) => async (dispatch) => {
@@ -172,12 +137,6 @@ export const getComment = (id) => async (dispatch) => {
 
   try {
     console.log("Lấy thông tin bình luận Action");
-
-    dispatch({
-      type: COMMON_LOADING_SET,
-      payload: true,
-    });
-
     const response = await service.getComment(id);
     console.log(response);
     if (response.status === 200) {
@@ -193,17 +152,8 @@ export const getComment = (id) => async (dispatch) => {
     }
   } catch (error) {
     console.log(error);
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+  
   }
-  dispatch({
-    type: COMMON_LOADING_SET,
-    payload: false,
-  });
 };
 
 export const updateComment = (id, object, navigate) => async (dispatch) => {
@@ -211,12 +161,6 @@ export const updateComment = (id, object, navigate) => async (dispatch) => {
 
   try {
     console.log("Sửa bình luận");
-
-    dispatch({
-      type: COMMON_LOADING_SET,
-      payload: true,
-    });
-
     const response = await service.updateComment(id, object);
 
     if (response.status === 201) {
@@ -236,18 +180,9 @@ export const updateComment = (id, object, navigate) => async (dispatch) => {
     }
     console.log(response);
   } catch (error) {
-    dispatch({
-      type: COMMON_ERROR_SET,
-      payload: error.response.data
-        ? error.response.data.message
-        : error.message,
-    });
+    console.log(error);
   }
-  dispatch({
-    type: COMMON_LOADING_SET,
-    payload: false,
-  });
-  navigate("/dashboard/POST/list");
+  navigate("/dashboard/comments/list");
 };
 
 export const clearCommentState = () => (dispatch) => {

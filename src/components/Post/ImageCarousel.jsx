@@ -1,7 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import PostService from '../../services/postService';
-import '../../css/Post/ImageCarousel.scss'; // Import file SCSS
+import '../../css/Post/ImageCarousel.scss'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ImageCarousel = ({ images }) => {
