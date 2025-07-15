@@ -8,7 +8,6 @@ import {
   sendMessage,
 } from "../redux/actions/messageAction";
 import withSocket from "../helpers/withSocket";
-import { AiOutlineArrowDown } from "react-icons/ai";
 import MessageService from "../services/messageService";
 import moment from "moment";
 import { FaCheck } from "react-icons/fa";
@@ -247,6 +246,14 @@ class MessagePage extends Component {
                 </div>
               </div>
             ))}
+            {openBtn && (
+              <button
+                className="chat__messages--add"
+                onClick={this.handleScrollToBottom}
+              >
+                  ↓ Tin nhắn mới
+              </button>
+            )}
           </div>
           <div className="chat__input-container">
             <Input
@@ -266,14 +273,6 @@ class MessagePage extends Component {
               Gửi
             </Button>
           </div>
-          {openBtn && (
-            <button
-              className="chat__messages--add"
-              onClick={this.handleScrollToBottom}
-            >
-              Tin nhắn mới <AiOutlineArrowDown />
-            </button>
-          )}
         </div>
       </div>
     );
