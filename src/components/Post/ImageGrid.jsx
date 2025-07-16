@@ -86,7 +86,7 @@ const ImageGrid = ({ images }) => {
       {/* Lớp mờ phủ TẤT CẢ ảnh khi số ảnh >= 5 */}
       {images.length >= 5 && (
         <div className="absolute inset-y-0 right-0 w-[30%] bg-black/50 flex items-center justify-center text-white text-2xl font-bold">
-          +{images.length - 4}
+          +{images.length - 3}
         </div>
       )}
     </div>

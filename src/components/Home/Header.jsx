@@ -154,7 +154,7 @@ class Header extends Component {
               <Tooltip title="Đăng nhập">
                 <Link
                   to="/login"
-                  className="px-6 py-2 mb-1 bg-gradient-to-r from-blue-500 to-purple-500 
+                  className="px-6 py-2 mb-1 mr-3 bg-gradient-to-r from-blue-500 to-purple-500 
              text-white font-semibold rounded-full shadow-md 
              hover:from-blue-600 hover:to-purple-600 transition-all 
              duration-300 ease-in-out transform hover:scale-105"

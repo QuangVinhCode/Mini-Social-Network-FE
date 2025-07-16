@@ -58,7 +58,7 @@ class PostCard extends Component {
     const userSession = sessionStorage.getItem("userSession")
       ? JSON.parse(sessionStorage.getItem("userSession"))
       : null;
-    const { comment_content } = this.state;
+    const { comment_content,comments } = this.state;
     const { post } = this.props;
     if (userSession)
     {
@@ -69,7 +69,8 @@ class PostCard extends Component {
       };
       const flag = await this.props.insertComment(comment);
       if (flag) {
-        this.setState({ comment_content: "" });
+        this.setState({comments:[flag,...comments], comment_content: "" });
+
         this.displayComments();
       }
     }else{
@@ -153,8 +154,6 @@ class PostCard extends Component {
             )}
           </div>
         )}
-
-        {/* Khung nhập bình luận */}
         <div className="post-card__comment-input">
           <Input
             type="text"
